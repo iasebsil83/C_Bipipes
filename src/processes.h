@@ -22,7 +22,11 @@
 
 // -------------------------------- DEFINITIONS --------------------------------
 
-//structures
+//constants
+#define PROC__STOP_KILL 0
+#define PROC__STOP_WAIT 1
+
+//structure
 struct PROC{
 	char* exePath;
 	char** args;
@@ -57,7 +61,7 @@ void proc_delete(proc* p); //will NOT free the given data in proc_create() (exeP
 
 //start - stop
 void proc_start(proc* p);
-void proc_stop(proc* p);
+void proc_stop(proc* p, char mode);
 
 
 

@@ -93,7 +93,7 @@ int main(int argc, char** argv){
 
 	//get bipipe info (passed as argument)
 	bipipe* bp = bipipe_join(argv[1]);
-	printf("Prog_2 > PID[%i], PPID[%i] : Joined bipipe [%s].\n\n", getpid(), getppid(), argv[1]);
+	printf("Prog_2 > PID[%i], PPID[%i] : Joined bipipe [%s].\n", getpid(), getppid(), argv[1]);
 
 
 

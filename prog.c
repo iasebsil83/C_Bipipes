@@ -13,11 +13,6 @@
 
 
 
-//string utilities
-#include "src/more_strings.h"
-
-
-
 //bipipes utility
 #include "bipipes.h"
 
@@ -81,6 +76,21 @@
 
 
 // ---------------- DEBUG SHORTCUTS ----------------
+
+//malloc a string
+char* malloc_string(char* s){
+	char* newS = malloc(strlen(s));
+	if(newS == NULL){
+		printf("FATAL ERROR > prog.c : malloc_string() : PID[%i], PPID[%i] : Computer refuses to give more memory.\n", getpid(), getppid());
+		exit(EXIT_FAILURE);
+	}
+
+	//write into newS
+	sprintf(newS, "%s", s);
+	return newS;
+}
+
+
 
 //read - write in bipipe with debug text
 void ____read(bipipe* bp){
@@ -162,20 +172,15 @@ int main(){
 
 	//SUBPROCESS 1
 
-	//prepare subprocess 1 command-line
-	char* p1_cmdLine = malloc(45); //will contain a string like "run 0a0a0a0a1b1b1b1b2c2c2c2c3d3d3d3d4e4e4e4e"
-	if(p1_cmdLine == NULL){
+	//prepare subprocess 1 command (will be like {"run","0a0a0a0a1b1b1b1b2c2c2c2c3d3d3d3d4e4e4e4e", NULL})
+	char** p1_cmd = malloc(3*sizeof(char*));
+	if(p1_cmd == NULL){
 		printf("FATAL ERROR > prog.c : main() : PID[%i], PPID[%i] : Computer refuses to give more memory.\n", getpid(), getppid());
 		exit(EXIT_FAILURE);
 	}
-	sprintf(p1_cmdLine, "run %s", bp1->info);
-
-	//prepare subprocess 1 command-array
-	char** p1_cmd = strArr_split(
-		p1_cmdLine,
-		' '
-	);
-	free(p1_cmdLine); //no longer useful
+	p1_cmd[0] = malloc_string("run");
+	p1_cmd[1] = malloc_string(bp1->info);
+	p1_cmd[2] = NULL;
 
 	//create subprocess 1
 	proc* p1 = proc_create(
@@ -191,20 +196,15 @@ int main(){
 
 	//SUBPROCESS 2
 
-	//prepare subprocess 2 command-line
-	char* p2_cmdLine = malloc(45); //will contain a string like "run 0a0a0a0a1b1b1b1b2c2c2c2c3d3d3d3d4e4e4e4e"
-	if(p2_cmdLine == NULL){
+	//prepare subprocess 2 command (will be like {"run","0a0a0a0a1b1b1b1b2c2c2c2c3d3d3d3d4e4e4e4e", NULL})
+	char** p2_cmd = malloc(3*sizeof(char*));
+	if(p2_cmd == NULL){
 		printf("FATAL ERROR > prog.c : main() : PID[%i], PPID[%i] : Computer refuses to give more memory.\n", getpid(), getppid());
 		exit(EXIT_FAILURE);
 	}
-	sprintf(p2_cmdLine, "run %s", bp2->info);
-
-	//prepare subprocess 2 command-array
-	char** p2_cmd = strArr_split(
-		p2_cmdLine,
-		' '
-	);
-	free(p2_cmdLine); //no longer useful
+	p2_cmd[0] = malloc_string("run");
+	p2_cmd[1] = malloc_string(bp2->info);
+	p2_cmd[2] = NULL;
 
 	//create subprocess 2
 	proc* p2 = proc_create(
@@ -221,10 +221,11 @@ int main(){
 	//LAUNCH PROCESSES
 
 	//start processes
-	printf("Prog   > PID[%i], PPID[%i] : Launching processes...\n", getpid(), getppid());
+	printf("Prog   > PID[%i], PPID[%i] : Launching processes...\n\n", getpid(), getppid());
 	proc_start(p1);
 	proc_start(p2);
-	printf("Prog   > PID[%i], PPID[%i] : Processes launched => Activation of bipipes from parent side...\n", getpid(), getppid());
+	usleep(500000); //wait a bit to let subprocesses be launched
+	printf("\nProg   > PID[%i], PPID[%i] : Processes launched => Activation of bipipes from parent side...\n", getpid(), getppid());
 
 	//activate bipipes
 	bipipe_everybodyJoined(bp1);
@@ -265,11 +266,17 @@ int main(){
 
 	//kill subprocesses
 	printf("Prog   > PID[%i], PPID[%i] : Bipipes deleted => Killing subprocesses...\n", getpid(), getppid());
-	proc_stop(p1);
-	proc_stop(p2);
+	proc_stop(p1, PROC__STOP_KILL);
+	proc_stop(p2, PROC__STOP_KILL);
 	printf("Prog   > PID[%i], PPID[%i] : Subprocesses killed.\n", getpid(), getppid());
-	strArr_free(p1_cmd);
-	strArr_free(p2_cmd);
+	free(p1_cmd[2]);
+	free(p1_cmd[1]);
+	free(p1_cmd[0]);
+	free(p1_cmd);
+	free(p2_cmd[2]);
+	free(p2_cmd[1]);
+	free(p2_cmd[0]);
+	free(p2_cmd);
 
 
 

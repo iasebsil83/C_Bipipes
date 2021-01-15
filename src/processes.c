@@ -37,7 +37,7 @@
 
 
 
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Processes [0.1.0] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Processes [0.1.1] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                                  Processes by I.A.
 
         Processes is just an utility program that allows you to manipulate
@@ -52,6 +52,10 @@
     11/01/2021 > [0.1.0] :
     - Created processes.c/.h.
     - Created demonstration program.
+
+    15/01/2021 > [0.1.1] :
+    - Added stop modes in proc_stop().
+    - Removed more_strings.c/.h in demonstration program.
 
     BUGS : .
     NOTES : .
@@ -186,7 +190,7 @@ void proc_start(proc* p){
 	}
 }
 
-void proc_stop(proc* p){
+void proc_stop(proc* p, char mode){
 
 	//error cases
 	if(p == NULL){
@@ -203,9 +207,22 @@ void proc_stop(proc* p){
 	}
 
 	//stop process
-	if( kill(p->pid, SIGKILL) ){
-		printf("RUNTIME ERROR > processes.c : proc_stop() : Could not send stop signal to process.\n");
-		return;
+	switch(mode){
+
+		case PROC__STOP_KILL:
+			if( kill(p->pid, SIGKILL) ){
+				printf("RUNTIME ERROR > processes.c : proc_stop() : Could not send stop signal to process.\n");
+				return;
+			}
+		break;
+
+		case PROC__STOP_WAIT:
+		break;
+
+		default:
+			printf("RUNTIME ERROR > processes.c : proc_stop() : Invalid stop mode.\n");
+			return;
+		break;
 	}
 
 	//wait for process reception
