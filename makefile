@@ -6,7 +6,7 @@ run: bipipes.o processes.o more_strings.o prog.o
 
 
 #example program
-prog.o: prog.c bipipes.h src/processes.h
+prog.o: prog.c bipipes.h src/more_strings.h src/processes.h
 	gcc -Wall -c prog.c -O2
 
 
