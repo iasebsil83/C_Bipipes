@@ -269,14 +269,8 @@ int main(){
 	proc_stop(p1, PROC__STOP_KILL);
 	proc_stop(p2, PROC__STOP_KILL);
 	printf("Prog   > PID[%i], PPID[%i] : Subprocesses killed.\n", getpid(), getppid());
-	free(p1_cmd[2]);
-	free(p1_cmd[1]);
-	free(p1_cmd[0]);
-	free(p1_cmd);
-	free(p2_cmd[2]);
-	free(p2_cmd[1]);
-	free(p2_cmd[0]);
-	free(p2_cmd);
+	proc_delete(p1);
+	proc_delete(p2);
 
 
 

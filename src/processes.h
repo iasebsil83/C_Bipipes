@@ -57,7 +57,7 @@ typedef struct PROC proc;
 
 //create - delete
 proc* proc_create(char* exePath, char** args);
-void proc_delete(proc* p); //will NOT free the given data in proc_create() (exePath & args)
+void proc_delete(proc* p); //will free #args# but not #exePath# ! (allowing you to use a string litteral for #exePath#)
 
 //start - stop
 void proc_start(proc* p);

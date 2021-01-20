@@ -53,9 +53,10 @@
     - Created processes.c/.h.
     - Created demonstration program.
 
-    15/01/2021 > [0.1.1] :
+    20/01/2021 > [0.1.1] :
     - Added stop modes in proc_stop().
     - Removed more_strings.c/.h in demonstration program.
+    - proc_delete() is now liberating also #args# (given in proc_create()).
 
     BUGS : .
     NOTES : .
@@ -128,7 +129,7 @@ proc* proc_create(char* exePath, char** args){
 	return p;
 }
 
-void proc_delete(proc* p){ //will NOT free the given data in proc_create() (exePath & args)
+void proc_delete(proc* p){ //will free #args# but not #exePath# ! (allowing you to use a string litteral for #exePath#)
 
 	//error cases
 	if(p == NULL){
@@ -141,6 +142,11 @@ void proc_delete(proc* p){ //will NOT free the given data in proc_create() (exeP
 	}
 
 	//liberation
+	char** a = p->args;
+	while(*a != NULL){
+		free(*a);
+		a++;
+	}
 	free(p);
 }
 
