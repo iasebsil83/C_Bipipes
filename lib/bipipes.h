@@ -8,18 +8,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 // -------------------------------- DEFINITIONS --------------------------------
 
 //structure
@@ -32,18 +20,6 @@ struct BIPIPE{
 	unsigned int length;
 };
 typedef struct BIPIPE bipipe;
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -66,18 +42,6 @@ void bipipe_everybodyJoined(bipipe* bp);
 char* bipipe_read(bipipe* bp);
 void bipipe_write(bipipe* bp, char* data); // data will not be free after use
                                            // WARNING ! data must have length >= bp->length ('\0' IS NOT DETERMINATIVE)
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

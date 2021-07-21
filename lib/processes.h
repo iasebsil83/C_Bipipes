@@ -8,18 +8,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 // -------------------------------- DEFINITIONS --------------------------------
 
 //constants
@@ -41,18 +29,6 @@ typedef struct PROC proc;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 // -------------------------------- PROCESSES --------------------------------
 
 //create - delete
@@ -62,18 +38,6 @@ void proc_delete(proc* p); //will free #args# but not #exePath# ! (allowing you 
 //start - stop
 void proc_start(proc* p);
 void proc_stop(proc* p, char mode);
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

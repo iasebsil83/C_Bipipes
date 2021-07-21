@@ -8,15 +8,7 @@
 
 
 //bipipes utility
-#include "../../bipipes.h"
-
-
-
-
-
-
-
-
+#include "../../lib/bipipes.h"
 
 
 
@@ -74,29 +66,16 @@ void ____sleep(float duration){
 
 
 
-
-
-
-
-
-
-
-
 // ---------------- EXECUTION ----------------
 
 //main
 int main(int argc, char** argv){
-
-
 
 	//BIPIPE
 
 	//get bipipe info (passed as argument)
 	bipipe* bp = bipipe_join(argv[1]);
 	printf("Prog_1 > PID[%i], PPID[%i] : Joined bipipe [%s].\n", getpid(), getppid(), argv[1]);
-
-
-
 
 
 
@@ -110,9 +89,6 @@ int main(int argc, char** argv){
 
 	____write(bp,"P1 has received");
 	____sleep(15);
-
-
-
 
 
 

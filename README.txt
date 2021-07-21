@@ -1,9 +1,9 @@
 This program is a simple utility library that will allow you to manipulate pipes
 on linux in a 2-way version.
 
-Demonstration program is made in prog.c.
+Demonstration program is made in src/prog.c.
 
-More information about this library are available in bipipes.c.
+More information about this library are available in lib/bipipes.c.
 
 
 

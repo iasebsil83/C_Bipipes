@@ -9,20 +9,12 @@
 
 
 //processes
-#include "src/processes.h"
+#include "../lib/processes.h"
 
 
 
 //bipipes utility
-#include "bipipes.h"
-
-
-
-
-
-
-
-
+#include "../lib/bipipes.h"
 
 
 
@@ -36,7 +28,7 @@
 
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Prog [V.V.V] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                            bipipes.h demonstration program
+                        bipipes.h demonstration program
 
         Blablabla about the subject.
 
@@ -53,16 +45,8 @@
     BUGS : Active bugs in last version.
     NOTES : Notes.
 
-    Contact     : 
+    Contact     : ...
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-
-
-
-
-
-
-
-
 
 
 
@@ -135,23 +119,12 @@ void ____sleep(float duration){
 
 
 
-
-
-
-
-
-
-
-
 // ---------------- EXECUTION ----------------
 
 //main
 int main(){
 	//presentation
 	printf("Prog   > PID[%i], PPID[%i] : This is a basic example of pipe manipulation using \"bipipes.c/.h\".\n\n", getpid(), getppid());
-
-
-
 
 
 
@@ -164,9 +137,6 @@ int main(){
 	//create a second bipipe
 	bipipe* bp2 = bipipe_create(16);
 	printf("Prog   > PID[%i], PPID[%i] : 2nd bipipe created (length %u, info [%s]).\n", getpid(), getppid(), bp2->length, bp2->info);
-
-
-
 
 
 
@@ -191,9 +161,6 @@ int main(){
 
 
 
-
-
-
 	//SUBPROCESS 2
 
 	//prepare subprocess 2 command (will be like {"run","0a0a0a0a1b1b1b1b2c2c2c2c3d3d3d3d4e4e4e4e", NULL})
@@ -215,9 +182,6 @@ int main(){
 
 
 
-
-
-
 	//LAUNCH PROCESSES
 
 	//start processes
@@ -231,9 +195,6 @@ int main(){
 	bipipe_everybodyJoined(bp1);
 	bipipe_everybodyJoined(bp2);
 	printf("Prog   > PID[%i], PPID[%i] : Bipipes activated from parent side, my children can now communicate with me.\n\n", getpid(), getppid());
-
-
-
 
 
 
@@ -254,9 +215,6 @@ int main(){
 
 
 
-
-
-
 	//TERMINATE
 
 	//free bipipes
@@ -271,9 +229,6 @@ int main(){
 	printf("Prog   > PID[%i], PPID[%i] : Subprocesses killed.\n", getpid(), getppid());
 	proc_delete(p1);
 	proc_delete(p2);
-
-
-
 
 
 
