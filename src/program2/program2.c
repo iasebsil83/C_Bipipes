@@ -7,12 +7,9 @@
 
 
 
+
 //bipipes utility
 #include "../../lib/bipipes.h"
-
-
-
-
 
 
 
@@ -50,14 +47,11 @@ void ____write(bipipe* bp, char* data){
 
 
 
+
 //sleep with float value
 void ____sleep(float duration){
 	usleep(duration*1000000);
 }
-
-
-
-
 
 
 

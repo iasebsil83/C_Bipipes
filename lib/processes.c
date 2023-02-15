@@ -6,6 +6,7 @@
 
 
 
+
 //processes management
 #include <unistd.h>
 #include <sys/wait.h>
@@ -15,12 +16,9 @@
 
 
 
+
 //own header
 #include "processes.h"
-
-
-
-
 
 
 
@@ -85,10 +83,6 @@
 
 
 
-
-
-
-
 // -------------------------------- PROCESSES --------------------------------
 
 //create - delete
@@ -134,6 +128,7 @@ void proc_delete(proc* p){ //will free #args# but not #exePath# ! (allowing you 
 	free(p->args);
 	free(p);
 }
+
 
 
 

@@ -7,20 +7,9 @@
 
 
 
+
 //own header
 #include "bipipes.h"
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -66,18 +55,6 @@
 
     If not, see <https://www.gnu.org/licenses/>.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -147,18 +124,6 @@ static int __8hexchar_to_int__(char* h){ // #h# don't require an '\0' at the end
 		(  __1hexchar_to_int__(h[7])        & 0x0000000f )
 	;
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -278,6 +243,7 @@ void bipipe_delete(bipipe* bp){
 
 
 
+
 //join - everybodyJoined
 bipipe* bipipe_join(char* info){
 
@@ -353,6 +319,7 @@ void bipipe_everybodyJoined(bipipe* bp){ //WARNING ! Only parent process bipipes
 	close( bp->pRcW_fd[1] );
 	close( bp->pWcR_fd[0] );
 }
+
 
 
 

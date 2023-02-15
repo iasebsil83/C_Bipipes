@@ -8,17 +8,15 @@
 
 
 
+
 //processes
 #include "../lib/processes.h"
 
 
 
+
 //bipipes utility
 #include "../lib/bipipes.h"
-
-
-
-
 
 
 
@@ -47,10 +45,6 @@
 
     Contact     : ...
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-
-
-
-
 
 
 
@@ -107,10 +101,6 @@ void ____write(bipipe* bp, char* data){
 void ____sleep(float duration){
 	usleep(duration*1000000);
 }
-
-
-
-
 
 
 
